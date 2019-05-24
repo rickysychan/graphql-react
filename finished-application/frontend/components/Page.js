@@ -42,7 +42,7 @@ injectGlobal`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    line-height: 2;
+    line-height: 2px;
     font-family: 'radnika_next';
   }
   a {
