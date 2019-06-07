@@ -1,16 +1,20 @@
-require('dotenv').config({ path: 'variables.env' })
-const createServer = require('./createServer')
-const db = require('./db')
+const cookieParser = require("cookie-parser");
 
-const server = createServer()
+require("dotenv").config({ path: "variables.env" });
+const createServer = require("./createServer");
+const db = require("./db");
 
-// TODO use express to handle cookies (JWT)
+const server = createServer();
+
+server.express.use(cookieParser());
 // TODO use express to populate current users
 
-
-server.start({
+server.start(
+  {
     cors: {
-        credentials: true,
-        origin: process.env.FRONTEND_URL
+      credentials: true,
+      origin: process.env.FRONTEND_URL
     }
-}, deets => console.log(`server is running on port http:/localhost${deets.port}`))
+  },
+  deets => console.log(`server is running on port http:/localhost${deets.port}`)
+);
