@@ -140,9 +140,7 @@ const Mutations = {
       html: makeANiceEmail(
         `Your Password reset token is here! 
         \n\n 
-        <a href="${
-          process.env.FRONTEND_URL
-        }/reset?resetToken=${resetToken}">Click here to reset</a>`
+        <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click here to reset</a>`
       )
     });
 
@@ -237,7 +235,7 @@ const Mutations = {
     if (existingCartItem) {
       console.log("this item is already in their cart");
       console.log(existingCartItem);
-      return ctx.db.mutation.updateCartItem(
+      return ctx.db.mutation.cartItems(
         {
           where: { id: existingCartItem.id },
           data: { quantity: existingCartItem.quantity + 1 }
@@ -255,6 +253,33 @@ const Mutations = {
           item: {
             connect: { id: args.id }
           }
+        }
+      },
+      info
+    );
+  },
+  async removeFromCart(parent, args, ctx, info) {
+    // 1. find the cart item
+    const cartItem = await ctx.db.query.cartItem(
+      {
+        where: {
+          id: args.id
+        }
+      },
+      `{id, user { id }}`
+    );
+    // 1.5 make sure we found this item
+
+    if (!cartItem) throw new Error("no cart item found");
+    // 2. make sure they own the cart item
+    if (cartItem.user.id !== ctx.request.userId) {
+      throw new Error("you do not own this cart item");
+    }
+    // 3. delete cart item
+    return ctx.db.mutation.deleteCartItem(
+      {
+        where: {
+          id: args.id
         }
       },
       info
