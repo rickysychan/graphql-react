@@ -235,7 +235,7 @@ const Mutations = {
     if (existingCartItem) {
       console.log("this item is already in their cart");
       console.log(existingCartItem);
-      return ctx.db.mutation.cartItems(
+      return ctx.db.mutation.updateCartItem(
         {
           where: { id: existingCartItem.id },
           data: { quantity: existingCartItem.quantity + 1 }
