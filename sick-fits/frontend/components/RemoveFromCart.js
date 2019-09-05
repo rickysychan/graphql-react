@@ -23,7 +23,7 @@ const BigButton = styled.button`
   }
 `;
 export default class RemoveFromCart extends Component {
-  static PropTypes = {
+  static propTypes = {
     id: PropTypes.string.isRequired
   };
 
