@@ -11,7 +11,6 @@ const Nav = () => (
   <User>
     {({ data: { me } }) => (
       <NavStyles>
-        {" "}
         <Link href="items">
           <a>Shop</a>
         </Link>

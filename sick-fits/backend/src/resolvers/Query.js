@@ -38,13 +38,26 @@ const Query = {
     // 3 check permissions to see if they can see this order
     const ownsOrder = order.user.id === ctx.request.userId;
     const hasPermissionToSeeOrder = ctx.request.user.permissions.includes(
-      "ADMIN"
+      "USER"
     );
     if (!ownsOrder || !hasPermissionToSeeOrder) {
       throw new Error("You cant see this budd");
     }
     // 4 return order
     return order;
+  },
+  async orders(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    // 1 make sure they are logged in
+    if (!userId) {
+      throw new Error("You are not logged in");
+    }
+    return ctx.db.query.orders(
+      {
+        where: { user: { id: userId } }
+      },
+      info
+    );
   }
 };
 
