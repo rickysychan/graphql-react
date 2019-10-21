@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import PropTypes from "prop-types";
 import { CURRENT_USER_QUERY } from "./User";
 
-const REMOVE_FROM_CART_MUTATION = gql`
+export const REMOVE_FROM_CART_MUTATION = gql`
   mutation removeFromCart($id: ID!) {
     removeFromCart(id: $id) {
       id
@@ -29,10 +29,8 @@ export default class RemoveFromCart extends Component {
 
   // this get called as soon as we get a response back from server after a mutation has been performed
   update = (cache, payload) => {
-    console.log("running remove from cart update function");
     // 1.first read the cache
     const data = cache.readQuery({ query: CURRENT_USER_QUERY });
-    console.log(data);
     // 2 remove that item from the cart
     const cartItemId = payload.data.removeFromCart.id;
     data.me.cart = data.me.cart.filter(cartItem => cartItem.id !== cartItemId);

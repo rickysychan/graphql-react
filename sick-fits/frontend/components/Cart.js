@@ -47,7 +47,7 @@ const Cart = () => {
                 &times;
               </CloseButton>
               <Supreme>{me.name}'s Cart</Supreme>
-              <p>
+              <p data-test="cartNumber">
                 You have {me.cart.length} item
                 {me.cart.length === 1 ? "" : "s"} in your cart
               </p>

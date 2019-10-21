@@ -8,7 +8,7 @@ import formatMoney from "../lib/formatMoney";
 import Error from "./ErrorMessage";
 import OrderStyles from "./styles/OrderStyles";
 
-const SINGLE_ORDER_QUERY = gql`
+export const SINGLE_ORDER_QUERY = gql`
   query SINGLE_ORDER_QUERY($id: ID!) {
     order(id: $id) {
       id
@@ -42,29 +42,31 @@ export default class Order extends Component {
           if (loading) return <p>Loading...</p>;
           const order = data.order;
           return (
-            <OrderStyles>
+            <OrderStyles data-test="order">
               <Head>
                 <title>Sick Fits - Order {order.id}</title>
               </Head>
               <p>
                 <span>ORDER ID: </span>
-                <span>{this.props.id}</span>
+                <span data-test="orderID">{this.props.id}</span>
               </p>
               <p>
                 <span>Charge: </span>
-                <span>{order.charge}</span>
+                <span data-test="charge">{order.charge}</span>
               </p>
               <p>
                 <span>Date: </span>
-                <span>{format(order.createdAt, "MMMM d, YYYY h:mm a")}</span>
+                <span data-test="date">
+                  {format(order.createdAt, "MMMM d, YYYY h:mm a")}
+                </span>
               </p>
               <p>
                 <span>Total: </span>
-                <span>{formatMoney(order.total)}</span>
+                <span data-test="total">{formatMoney(order.total)}</span>
               </p>
               <p>
                 <span>Item Count: </span>
-                <span>{order.items.length}</span>
+                <span data-test="itemCount">{order.items.length}</span>
               </p>
               <div className="items">
                 {order.items.map(item => (
