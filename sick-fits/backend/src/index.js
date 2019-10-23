@@ -42,3 +42,4 @@ server.start(
   },
   deets => console.log(`server is running on port http:/localhost${deets.port}`)
 );
+// start it
