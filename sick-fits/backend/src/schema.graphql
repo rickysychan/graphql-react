@@ -42,7 +42,6 @@ type Query {
   order(id: ID!): Order
   orders(orderBy: ItemOrderByInput): [Order]!
 }
-
 type User {
   id: ID!
   name: String!
