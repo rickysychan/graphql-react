@@ -15,8 +15,7 @@ Hooked up to Stripe for Financial transactions.
 
 ### How do I try it?
 
-Self Demos aren't available for this application as it needs to be hooked up to a real database at the minimum, which requires
-sensitive environment variables to be shared
+Self Demos aren't available for this application as it needs to be hooked up to a real database at the minimum, which would require sensitive environment variables to be shared
 
 ### How do I see a coverage test?
 
