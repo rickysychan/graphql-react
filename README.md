@@ -1,4 +1,4 @@
-## Sick Firts - Modern Graqh-QL/React E-commerce Application
+## Sick Fits - Modern Graqh-QL/React E-commerce Application
 
 This Application utilizes:
 
