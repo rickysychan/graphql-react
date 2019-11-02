@@ -10,7 +10,7 @@ E-commerce store with in house User Authentication, Image handling solution, and
 Hooked up to Stripe for Financial transactions.
 
 ### Application
-![This is the Items page](https://github.com/rickysychan/LootChecker-React-Redux-Jest-Enzyme/blob/master/src/assets/lootchecker.png)
+![This is the Items page](https://github.com/rickysychan/graphql-react/blob/master/Sample.jpg)
 
 
 ### How do I try it?
